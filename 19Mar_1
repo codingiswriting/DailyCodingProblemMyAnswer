@@ -9,7 +9,7 @@
 # MY Method 1: build a function that iterate all elements in the list and
 # check if the first len(s) words are identical to s. If so, append it to
 # a result list. Return to the list.
-def prefix_trans(s, l_s):
+def prefix_trans_1(s, l_s):
     result_l = []
     for item in l_s:
         if item[:len(s)]== s:
