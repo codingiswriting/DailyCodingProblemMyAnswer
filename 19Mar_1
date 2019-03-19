@@ -1,0 +1,38 @@
+# 19_Mar question from Daily Coding Problem is to: 
+
+# "implement an autocomplete system. That is, given a query string s and a set of all possible query strings, 
+# return all strings in the set that have s as a prefix.
+
+# Example: given the query string de and the set of strings [dog, deer, deal], return [deer, deal].
+
+
+# MY Method 1: build a function that iterate all elements in the list and
+# check if the first len(s) words are identical to s. If so, append it to
+# a result list. Return to the list.
+def prefix_trans(s, l_s):
+    result_l = []
+    for item in l_s:
+        if item[:len(s)]== s:
+            result_l.append(item)
+    return result_l
+
+
+# My Method 2: define a function that returns elements that startswith the targeted string
+
+def prefix_trans_2(s, l_s):
+    return [item for item in l_s if item.startswith(s)]
+
+
+# They also give the Hint: Try preprocessing the dictionary into a more efficient data structure to speed up queries.
+# But I don't quite get it why this is related to dictionary.
+# If you know why, please comment below.
+
+
+
+
+# Also, Daily Coding Problem is really cool and they send you coding interview questions everyday and you can
+# try to solve it in different ways. You can also upgrade yourself to premium and they provide solutions to every problem.
+# You can subscribe here: https://www.dailycodingproblem.com/
+
+# Have a Good Day
+# Ty
