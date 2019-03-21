@@ -1,0 +1,73 @@
+#There exists a staircase with N steps, and you can climb up either 1 or 2 steps at a time. Given N, write a function that returns the number of unique ways you can climb the staircase. The order of the steps matters.
+
+#For example, if N is 4, then there are 5 unique ways:
+
+#1, 1, 1, 1
+#2, 1, 1
+#1, 2, 1
+#1, 1, 2
+#2, 2
+
+# step 1: Prompts the user for a number N, which represents how many stairs he/she must climb
+# step 2: Given N: a set of integers that determines the steps an user is alloed to climb each time
+# step 3: Based on the relation:N = S1 * n1 + S2 * n2 + ... + Sn * nn for ni belongs to ni = {0, 1, 2, ..., }
+#       Create a list_mul that stores all [1] and len(list_mul) == len(X)
+# step 4:Turn the set X into list and zip it with list_mul
+# step 5:
+
+from itertools import permutations
+# when X = {1,2}, N = 4
+
+N = 4
+X = {1,2}
+list_mul = []
+X_l = list(X) #[1,2]
+solution_list = []
+# print(X_l)
+
+
+for i in range(N+1):
+    for j in range(N+1):
+        if i * X_l[0] + j *X_l[1] == N:
+            list_mul.append([i,j])
+            
+
+
+for solu_mul in list_mul: #[[0, 2], [2, 1], [4, 0]]
+    # this solu_mul really means: there are 0 [1] and 2 [2] or 2 [1] and 1 [2], or 4 [1] and 0 [2].
+    sol = solu_mul[0]*[X_l[0]] + solu_mul[1]*[X_l[1]]
+    
+    if not 0 in solu_mul:
+        for i in permutations(sol):
+            solution_list.append(list(i))
+ 
+    else:
+        solution_list.append(sol)
+     
+    #sol = solu_mul[0]*[X_l[i]]
+        
+        # 0*1 and 2 * 2 -> [2,2]
+        # 2*1 and 1*2 -> [1,1,2]
+        # 4 * 1 and 0*1 -> [1,1,1,1]
+ 
+        # when solu_mul == [2,1]
+        # when i == 0, sol = solu_mul[0]*[X_l[0]] = 2 * [1]
+        # when i == 1, sol = solu_mul[1]*[X_l[1]] = 1 * [2]
+        #if sol != []:
+
+
+
+
+solution_list = [x for i,x in enumerate(solution_list) if i == solution_list.index(x)]
+
+
+print (solution_list)
+        
+
+
+# Also, Daily Coding Problem is really cool and they send you coding interview questions everyday and you can
+# try to solve it in different ways. You can also upgrade yourself to premium and they provide solutions to every problem.
+# You can subscribe here: https://www.dailycodingproblem.com/
+
+# Have a Good Day
+# Ty
