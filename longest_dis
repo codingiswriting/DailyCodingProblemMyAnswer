@@ -1,0 +1,32 @@
+# 21/Mar
+
+# Given an integer k and a string s, find the length of the longest substring that contains at most k distinct characters.
+
+# For example, given s = "abcba" and k = 2, the longest substring with k distinct characters is "bcb".
+
+def longest_dis(s,k): # s = "abcba" and k = 2
+    # s is a string and k is the number of distinct elements
+    result_list = []
+    length_list = [n+1 for n in range(len(s)) if n+1>=k] # length >= 1
+    # so the lenth of the result is between 1 and len(string): the best
+    # result is the len(string)
+    # length_list=[2,3,4,5]
+    for length in length_list:
+        for i in range(len(s)):
+            result_list.append(s[i:i+length])
+    l_s = list(s)
+    long_result =[]
+    for item in result_list:
+        if len(set(item) & set(l_s)) == k:
+            long_result.append(item)
+    #print(long_result)
+    
+    len_list = [len(i) for i in long_result]
+    #print(len_list)
+    
+    result = long_result[len_list.index(max(len_list))]
+    print(result)
+
+
+
+
