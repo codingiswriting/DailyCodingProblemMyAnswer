@@ -1,0 +1,57 @@
+# 27/Mar/2019 
+
+# Question from Daily Coding is:
+
+#A builder is looking to build a row of N houses that can be of K different colors. He has a goal of minimizing cost while ensuring that no two neighbouring houses are of the same color.
+
+#Given an N by K matrix where the nth row and kth column represents the cost to build the nth house with kth color, return the minimum cost which achieves this goal.
+
+# My Answers:
+# This is a colouring problem, which should sound familiar to you
+# if you know sth about graph theory.
+# Normally, we need only to construct a graph that achieves the
+# smallest chromatic number among N vertices.
+# (So the normal assumption is the less colour you use, the cheaper.
+# Following this logic, we need only 2 colors,
+# all odd numbers share one and all even numbers share the other. 
+# But it’s not the case here.
+# The problem provides us a matrix that contains different costs
+# for building different number of houses with different number of colors.
+# In short, this directly reject our assumption that the less colour you use,
+# the cheaper.
+# Now the question is simple, we input the given matrix, chosen number of houses,
+# The algoritm will return the minimal price
+# One tricky part is to delete all costs that is calculated on using only one color
+
+
+mini_cost  = 0 # define the global variable mini_cost as 0.
+
+def mini_cost(m,n):
+    global mini_cost
+    if n-1 >= len(m):
+        # len(m) +1 is the total number of houses.
+        # If the chosen number of house n is bigger than this,
+        # it'll throw me an index error
+        print ("The matrix of cost didn't provide us the cost for",str(n),"houses. Please input a number equal or smaller than", str(n-1))
+    else:
+        cost_list = [] #corresponding costs for nth houses are stored in this list
+        #print("The current cost_list is", cost_list)
+        for cost in m[n-1]: # this is the nth row which represents the cost to build n houses
+            print(cost)
+            if m[n-1].index(cost) != 0: #one color option must be removed
+                #print(cost)
+                cost_list.append(cost)
+                #print(cost_list)
+                
+        mini_cost = min(cost_list)
+        k_index = str(cost_list.index(mini_cost) + 2) 
+        print ("The minimal cost for",str(n),"houses are",str(mini_cost),"dollars. You use",k_index,"colors.")
+        
+        
+        
+
+    
+
+
+
+  
